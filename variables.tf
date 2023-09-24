@@ -1,21 +1,21 @@
-variable "prefixes" {
+variable "prefix" {
   type        = list(string)
   default     = []
     validation {
     condition     = alltrue([
-      for prefix in var.prefixes : can(regex("^[0-9a-z]*$", prefix))
+      for p in var.prefix : can(regex("^[0-9a-z]*$", p))
     ])
     error_message = "Prefix can contain only digits and lower case letters"
   }
   description = "It is not recommended that you use prefix by azure you should be using a suffix for your resources."
 }
 
-variable "suffixes" {
+variable "suffix" {
   type        = list(string)
   default     = []
     validation {
     condition     = alltrue([
-      for suffix in var.suffixes : can(regex("^[0-9a-z]+$", suffix))
+      for s in var.suffix : can(regex("^[0-9a-z]+$", s))
     ])
     error_message = "Suffix can contain only digits and lower case letters"
   }
